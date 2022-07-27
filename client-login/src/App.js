@@ -7,6 +7,9 @@ import Home from './components/Home';
 import Register from './components/Register';
 import {Switch,Route} from "react-router-dom"
 import Edit from './components/Edit';
+import Detail from './components/Detail';
+
+
 
 function App() {
   return (
@@ -16,6 +19,7 @@ function App() {
   <Route exact path="/" component={Home} />
   <Route exact path="/register" component={Register} />
   <Route exact path="/edit/:id" component={Edit} />
+  <Route exact path="/view/:id" component={Detail} />
 </Switch>
 
 </>
