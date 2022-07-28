@@ -7,13 +7,13 @@ router.get("/",(req,res)=>{
 });
 */
 
-router.post("/register",(req,res)=>{
+router.post("/register", async(req,res)=>{
 const{name,email,age,mobile,work,add,desc}=req.body; 
 if(!name ||!email ||!age || !mobile ||!work || !add || !desc){ 
-    res.status(404).send("please fill the data");
+    res.status(422).send("please fill the data");
 }
 try{
-    const preuser= users.findOne({email:email});
+    const preuser= await users.findOne({email:email});
     console.log(preuser);
     
     if(preuser){
@@ -24,8 +24,8 @@ try{
         const adduser =new users({
             name,email,age,mobile,work,add,desc
         });
-         adduser.save();
-        res.status(201).json(adduser);
+            await adduser.save();
+        res.status(201).send(adduser);
         console.log(adduser);
     }
 }

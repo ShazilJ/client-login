@@ -1,6 +1,10 @@
 {
+  "type":"module",
   "dependencies": {
     "env-cmd": "^10.1.0",
     "npm-install-global": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
   }
 }
