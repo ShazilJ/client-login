@@ -57,19 +57,27 @@ useEffect(()=>{
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>{getuserdata[0].name}</td>
-                            <td>meet@email.com</td>
-                            <td>Webdeveloper</td>
-                            <td>91919191</td>
+                        {
+                            getuserdata.map((element,id)=>{
+                                return(
+                                    <>
+            <tr>
+                            <th scope="row">{id + 1}</th>
+                            <td>{element.name}</td>
+                            <td>{element.email}</td>
+                            <td>{element.work}</td>
+                            <td>{element.mobile}</td>
                             <td className='d-flex justify-content-between'>
                                 <button className='btn btn-success'><RemoveRedEyeIcon/></button>
                                 <button className='btn btn-primary'><EditIcon/></button>
                                 <button className='btn btn-danger'><DeleteOutlineIcon/></button>
                             </td>
-                        </tr>
-                       
+                        </tr>                        
+                                    </>
+                                )
+                            })
+                        }
+                        
                         
                     </tbody>
                 </table>
