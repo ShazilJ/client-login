@@ -6,6 +6,8 @@ router.get("/",(req,res)=>{
     console.log("connect");
 });
 */
+//register user
+
 
 router.post("/register", async(req,res)=>{
 const{name,email,age,mobile,work,add,desc}=req.body; 
@@ -33,4 +35,18 @@ catch(error){
     res.status(404).send(error)
 }
 })
+
+//get user data
+
+router.get("/getdata",async(req,res)=>{
+    try{
+      const userdata = await users.find();
+      res.status(201).json(userdata)
+      console.log(userdata);
+    }
+    catch(error){
+        res.status(404).send(error)
+    }
+}
+)
 module.exports = router;
