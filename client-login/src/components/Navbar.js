@@ -1,11 +1,11 @@
 import React from 'react'
-
+import { NavLink } from 'react-router-dom'
 const Navbar = () => {
     return (
         <header>
             <nav className="navbar navbar-expand-lg bg-light">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="#">Client Info</a>
+                    < NavLink className="navbar-brand" to="/">Client Info</NavLink>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>

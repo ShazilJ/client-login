@@ -23,7 +23,7 @@ console.log(getuserdata);
     const data=await res.json();
     console.log(data);
 
-    if(res.status===404 || !data){
+    if(res.status===422 || !data){
     
         console.log("error");
     }
@@ -68,7 +68,7 @@ useEffect(()=>{
                             <td>{element.work}</td>
                             <td>{element.mobile}</td>
                             <td className='d-flex justify-content-between'>
-                                <button className='btn btn-success'><RemoveRedEyeIcon/></button>
+                            <NavLink to={`view/${element._id}`}>   <button className='btn btn-success'><RemoveRedEyeIcon/></button></NavLink> 
                                 <button className='btn btn-primary'><EditIcon/></button>
                                 <button className='btn btn-danger'><DeleteOutlineIcon/></button>
                             </td>

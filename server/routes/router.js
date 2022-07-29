@@ -19,7 +19,7 @@ try{
     console.log(preuser);
     
     if(preuser){
-        res.status(404).send("this user is already present");
+        res.status(422).send("this user is already present");
 
     }
     else{
@@ -32,7 +32,7 @@ try{
     }
 }
 catch(error){
-    res.status(404).send(error)
+    res.status(422).send(error)
 }
 })
 
@@ -45,8 +45,24 @@ router.get("/getdata",async(req,res)=>{
       console.log(userdata);
     }
     catch(error){
-        res.status(404).send(error)
+        res.status(422).send(error)
     }
+})
+
+//get individual user
+
+router.get("/getuser/:id", async(req,res)=>{
+try{
+console.log(req.params);
+const {id}=req.params;
+const userindividual = await users.findById({_id:id});
+console.log(userindividual);
+res.status(201).json(userindividual)
+
 }
-)
+catch(error){
+    res.status(422).json(error)
+}
+})
+
 module.exports = router;
