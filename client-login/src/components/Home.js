@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { NavLink } from "react-router-dom";
 import { adddata } from "./context/ContextProvider";
+import { updatedata } from "./context/ContextProvider";
 
 const Home = () => {
   const [getuserdata, setUserdata] = useState([]);
   console.log(getuserdata);
 
   const { udata, setUdata } = useContext(adddata);
+  const { updata, setUPdata } = useContext(updatedata);
+  const { dltdata, setDLTdata } = useContext(deldata);
 
   const getdata = async (e) => {
     const res = await fetch("/getdata", {
@@ -26,6 +29,7 @@ const Home = () => {
       console.log("error");
     } else {
       setUserdata(data);
+
       console.log("get data");
     }
   };
@@ -51,6 +55,7 @@ const Home = () => {
       console.log("error");
     } else {
       console.log("user deleted");
+      setDLTdata(deletedata);
       getdata();
     }
   };
@@ -64,7 +69,48 @@ const Home = () => {
             class="alert alert-success alert-dismissible fade show"
             role="alert"
           >
-            <strong>Success!</strong> User Added Succesfully!
+            <strong>{udata.name}</strong> Added Succesfully!
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </>
+      ) : (
+        ""
+      )}
+
+      {updata ? (
+        <>
+          <div
+            class="alert alert-success alert-dismissible fade show"
+            role="alert"
+          >
+            <strong>{updata.name}</strong> Updated Succesfully!
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </>
+      ) : (
+        ""
+      )}
+      {dltdata ? (
+        <>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            role="alert"
+          >
+            <strong>{dltdata.name}</strong> Deleted Succesfully!
             <button
               type="button"
               class="close"
