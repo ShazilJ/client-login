@@ -50,8 +50,9 @@ const Home = () => {
       getdata();
     }
   };
-  //sss
+
   return (
+    //Below div is to add alet message via bootstrap
     <>
       <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Success!</strong> User Added Succesfully!
