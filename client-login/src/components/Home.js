@@ -50,7 +50,7 @@ const Home = () => {
       getdata();
     }
   };
-
+  //sss
   return (
     <>
       <div class="alert alert-success alert-dismissible fade show" role="alert">
