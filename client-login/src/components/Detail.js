@@ -12,12 +12,13 @@ import {useParams} from 'react-router-dom';
 
 const Detail = () => {
 
-    const {id} =useParams("");
-    console.log(id);
-   
     const [getuserdata,setUserdata]=useState([]);
 
     console.log(getuserdata);
+    const {id} =useParams("");
+    console.log(id);
+   
+    
     const getdata= async()=>
     {
 

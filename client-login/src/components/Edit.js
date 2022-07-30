@@ -1,8 +1,12 @@
-import React,{useState} from 'react'
-import { NavLink } from 'react-router-dom'
+import React,{useContext, useEffect, useState} from 'react'
+import { NavLink,useParams,useHistory } from 'react-router-dom'
 
 const Edit = () => {
-    
+
+//    const [getuserdata,setUserdata]=useState([]);
+
+const history = useHistory("");
+
     const [inpval,setINP] = useState({
         name:"",
         email:"",
@@ -27,6 +31,66 @@ const Edit = () => {
 
 
 
+       const {id} =useParams("");
+       console.log(id);
+      
+       
+       const getdata= async()=>
+       {
+   
+           const res = await fetch(`/getuser/${id}`,{
+           method:"GET" ,
+           headers:{
+               "Content-type":"application/json"
+           },
+           
+       });
+   
+       const data=await res.json();
+       console.log(data);
+   
+       if(res.status===422 || !data){
+       
+           console.log("error");
+       }
+       else{
+           setINP(data);
+           console.log("get data");
+       }
+       }   
+
+useEffect(()=>{
+    getdata();
+},[]);
+
+
+const updateuser =async(e)=>{
+    e.preventDefault();
+
+    const {name,email,work,add,mobile,desc,age} =inpval;
+
+    const res2 = await fetch(`/updateuser/${id}`,{
+    method:"PATCH" ,
+    headers:{
+        "Content-type":"application/json"
+    },
+    body:JSON.stringify({
+        name,email,work,add,mobile,add,desc,age
+    })
+});
+
+const data2=await res2.json();
+console.log(data2);
+
+if(res2.status === 422 || !data2){
+    alert("fill the data")
+}
+else{
+    //setUPdata(data2);
+    alert("data added");
+    history.push("/");
+}
+}
   return (
     <div className="container">
     <NavLink to="/">home2</NavLink>
@@ -72,7 +136,7 @@ const Edit = () => {
                <textarea name="desc" value={inpval.desc} onChange={setdata} className='form-control' id="" cols="30" rows="5"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" onClick={updateuser} class="btn btn-primary">Submit</button>
         </div>
     </form>
 </div>

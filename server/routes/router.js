@@ -65,4 +65,21 @@ catch(error){
 }
 })
 
+//update user data
+
+router.patch("/updateuser/:id",async(req,res)=>{
+    try{
+       const {id} =req.params ;
+
+       const updateduser =await users.findByIdAndUpdate(id,req.body,{
+        new:true
+       });
+       console.log(updateduser);
+       res.status(201).json(updateduser);
+    }
+    catch(error){
+        res.status(422).json(error);
+
+    }
+})
 module.exports = router;

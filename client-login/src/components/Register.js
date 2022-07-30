@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 const Register = () => {
+
+    const history=useHistory();
 
   const [inpval,setINP] = useState({
     name:"",
@@ -48,6 +50,7 @@ const Register = () => {
     }
     else{
         alert("data added");
+        history.push("/")
         console.log("data added");
     }
     }   
