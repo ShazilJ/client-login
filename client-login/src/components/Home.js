@@ -37,7 +37,27 @@ useEffect(()=>{
     getdata();
 })
 
+//delete user
 
+const deleteuser =async(id)=>{
+    const res2 = await fetch(`/deleteuser/${id}`,{
+        method:"DELETE" ,
+        headers:{
+            "Content-type":"application/json"
+        },
+    });
+
+    const deletedata = await res2.json();
+    console.log(deletedata);
+
+    if(res2.status === 422 || !deletedata){
+        console.log("error");
+    }
+    else{
+        console.log("user deleted");
+        getdata();
+    }
+}
 
     return (
         <div className='mt-5'>
@@ -73,7 +93,7 @@ useEffect(()=>{
                             <NavLink to ={`edit/${element._id}`}>
                                 <button className='btn btn-primary'><EditIcon/></button>
                                 </NavLink>
-                                <button className='btn btn-danger'><DeleteOutlineIcon/></button>
+                                <button className='btn btn-danger' onClick ={()=>deleteuser(element._id)}><DeleteOutlineIcon/></button>
                             </td>
                         </tr>                        
                                     </>

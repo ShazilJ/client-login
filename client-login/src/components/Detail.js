@@ -8,7 +8,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import WorkIcon from '@mui/icons-material/Work';
 import MobileFriendlyIcon from '@mui/icons-material/MobileFriendly';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import {useParams} from 'react-router-dom';
+import {NavLink, useHistory, useParams} from 'react-router-dom';
 
 const Detail = () => {
 
@@ -18,7 +18,7 @@ const Detail = () => {
     const {id} =useParams("");
     console.log(id);
    
-    
+    const history= useHistory();
     const getdata= async()=>
     {
 
@@ -45,18 +45,37 @@ const Detail = () => {
 
 useEffect(()=>{
     getdata();
-})
+});
+const deleteuser =async(id)=>{
+    const res2 = await fetch(`/deleteuser/${id}`,{
+        method:"DELETE" ,
+        headers:{
+            "Content-type":"application/json"
+        },
+    });
+
+    const deletedata = await res2.json();
+    console.log(deletedata);
+
+    if(res2.status === 422 || !deletedata){
+        console.log("error");
+    }
+    else{
+        console.log("user deleted");
+       history.push("/");
+    }
+}
 
 
     return (
         <div className='container mt-3'>
-            <h1 style={{ fontWeight: 400 }}> Welcome Harsh Pathak</h1>
+            <h1 style={{ fontWeight: 400 }}> Welcome </h1>
             <Card sx={{ maxWidth: 600 }}>
 
                 <CardContent>
                     <div className='add_btn'>
-                        <button className='btn btn-primary mx-2'><EditIcon /></button>
-                        <button className='btn btn-danger'><DeleteOutlineIcon /></button>
+                       <NavLink to ={`edit/${getuserdata._id}`}> <button className='btn btn-primary mx-2'><EditIcon /></button></NavLink>
+                        <button className='btn btn-danger' onClick ={()=>deleteuser(getuserdata._id)}><DeleteOutlineIcon /></button>
                     </div>
 
                     <div className='row'>
