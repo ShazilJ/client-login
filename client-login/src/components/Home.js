@@ -3,10 +3,14 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { NavLink } from "react-router-dom";
+import { adddata } from "./context/ContextProvider";
 
 const Home = () => {
   const [getuserdata, setUserdata] = useState([]);
   console.log(getuserdata);
+
+  const { udata, setUdata } = useContext(adddata);
+
   const getdata = async (e) => {
     const res = await fetch("/getdata", {
       method: "GET",
@@ -54,17 +58,27 @@ const Home = () => {
   return (
     //Below div is to add alet message via bootstrap
     <>
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Success!</strong> User Added Succesfully!
-        <button
-          type="button"
-          class="close"
-          data-dismiss="alert"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+      {udata ? (
+        <>
+          <div
+            class="alert alert-success alert-dismissible fade show"
+            role="alert"
+          >
+            <strong>Success!</strong> User Added Succesfully!
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </>
+      ) : (
+        ""
+      )}
+
       <div className="mt-5">
         <div className="container">
           <div className="add_btn mt-2 mb-2">
