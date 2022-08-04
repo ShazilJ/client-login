@@ -1,4 +1,9 @@
 # client-login
+
+This is the retrieved tables schema:-
+Due to issues Service and department collections were removed
+![image](https://user-images.githubusercontent.com/86336699/182957364-d3dc06fe-fc21-4ec8-9708-4a47eae9eaaa.png)
+![image](https://user-images.githubusercontent.com/86336699/182957531-aae7a5de-453d-4f41-84de-00a0faa68a32.png)
  
  This is the layout:-
 
